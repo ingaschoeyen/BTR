@@ -190,6 +190,15 @@
                     <site group="1" name="EPL_pb" pos="0.036 0.011 0.015"/>
                     <site group="1" name="EPB_pb" pos="0.04 0.011 0.015"/>
                     <site group="1" name="AB1_pb" pos="0.042 0.006 0.012"/>
+                    <site group="1" name="F1B_pm" pos="0 -0.02 0.015"/>
+                    <site group="1" name="OP1_pm" pos="0 -0.02 0.015"/>
+                    <site group="1" name="OP1_pr" pos="0 -0.02 0.03"/>
+                    <site group="1" name="AD1_pb" pos="0 -0.02 0.015"/>
+                    <site group="1" name="AD1_pf" pos="0 -0.02 0.06"/>
+                    <site group="1" name="AD1_pma" pos="0 -0.02 0.03"/>
+                    <site group="1" name="AD1_pmb" pos="0 -0.02 0.045"/>
+                    <site group="1" name="AB1B_pm" pos="0 -0.02 0.015"/>
+                    <site group="1" name="AB1B_pr" pos="0.03 -0.025 0.015"/>
 
                     <site group="2" name="FP2_pb" pos="0.01 -0.022 0.015"/>
                     <site group="2" name="FP2_pf" pos="0.029 -0.013 0.084"/>
@@ -209,6 +218,10 @@
                     <site group="5" name="FP5_pb" pos="-0.01 -0.022 0.015"/>
                     <site group="5" name="ED5a_pb" pos="-0.012 0.012 0.015"/>
                     <site group="5" name="ED5b_pb" pos="-0.02 0.012 0.015"/>
+                    <site group="5" name="F5M_pm" pos="0 -0.02 0.015"/>
+                    <site group="5" name="F5M_pr" pos="-0.025 -0.02 0.015"/>
+                    <site group="5" name="OP5_pm" pos="0 -0.02 0.015"/>
+                    <site group="5" name="AB5_pr" pos="-0.02 -0.015 0.015"/>
 
                     <body name="rh_ffknuckle" pos="0.033 0 0.095">
                         <inertial mass="0.008" pos="0 0 0" quat="0.5 0.5 -0.5 0.5" diaginertia="3.2e-07 2.6e-07 2.6e-07"/>
@@ -362,6 +375,8 @@
                         <site group="5" name="FP5_mc" pos="0 -0.012 0.057"/>
                         <site group="5" name="ED5a_mc" pos="0 0.012 0.057"/>
                         <site group="5" name="ED5b_mc" pos="0 0.012 0.03"/>
+                        <site group="5" name="OP5_mc" pos="0 -0.012 0.03"/>
+                        <site group="5" name="AB5_mc" pos="-0.01 -0.008 0.04"/>
 
                         <body name="rh_lfknuckle" pos="0 0 0.06579">
                             <inertial mass="0.008" pos="0 0 0" quat="0.5 0.5 -0.5 0.5" diaginertia="3.2e-07 2.6e-07 2.6e-07"/>
@@ -382,7 +397,9 @@
                                 <site group="5" name="ED5a_f2a" pos="0.006 0.009 0.035"/>
                                 <site group="5" name="ED5a_f2b" pos="-0.006 0.009 0.035"/>
                                 <site group="5" name="ED5b_f2" pos="0 0.009 0.03"/>
-                                
+                                <site group="5" name="F5M_f1" pos="-0.008 -0.007 0.008"/>
+                                <site group="5" name="AB5_f1" pos="-0.0095 0.003 0.01"/>
+
                                 <body name="rh_lfmiddle" pos="0 0 0.045">
                                     <inertial mass="0.017" pos="0 0 0.0125" quat="1 0 0 1" diaginertia="2.7e-06 2.6e-06 8.7e-07"/>
                                     <joint name="rh_LFJ2" class="middle_distal"/>
@@ -428,6 +445,8 @@
                             <site group="1" name="AB1_f1" pos="0.01 0 0.01"/>
                             <site group="1" name="EPB_f1" pos="0.012 0 0.027"/>
                             <site group="1" name="EPL_f1" pos="0.01 0.01 0.028"/>
+                            <site group="1" name="OP1_f1a" pos="-0.01 0 0.01"/>
+                            <site group="1" name="OP1_f1b" pos="-0.01 0 0.027"/>                            
 
                             <body name="rh_thhub" pos="0 0 0.038">
                                 <inertial mass="0.005" pos="0 0 0" diaginertia="1e-06 1e-06 3e-07"/>
@@ -445,6 +464,10 @@
                                     <site group="1" name="EPB_f2" pos="0.01 0 0.005"/>
                                     <site group="1" name="EPL_f2" pos="0.01 0.005 0.008"/>
                                     <site group="1" name="EPL_f3" pos="0.01 0.005 0.03"/>
+                                    <site group="1" name="F1B_f1" pos="-0.009 -0.005 0.005"/>
+                                    <site group="1" name="AD1_f1" pos="-0.009 -0.004 0.005"/>
+                                    <site group="1" name="AD1_f2" pos="-0.009 -0.005 0.005"/>
+                                    <site group="1" name="AB1B_f1" pos="-0.005 -0.009 0.005"/>
 
                                     <body name="rh_thdistal" pos="0 0 0.032" quat="1 0 0 -1">
                                         <inertial mass="0.017" pos="0 0 0.0145588" quat="1 0 0 1" diaginertia="2.37794e-06 2.27794e-06 1e-06"/>
@@ -491,7 +514,7 @@
 
 % tendons
 
-    %extrinisic
+    %extrinsic
     <tendon>
         <spatial group="0" name="FL_w_ul" range="0 1">
             <site site="arm_FWU_back"/>
@@ -508,12 +531,12 @@
             <site site="arm_EWRS_front"/>
             <site site="palm_EWRS"/>
         </spatial>
-        <spatial group="0" name="EX_w_rad_long">
+        <spatial group="0" name="EX_w_rad_long" range="0 1">
             <site site="arm_EWRL_back"/>
             <site site="arm_EWRL_front"/>
             <site site="palm_EWRL"/>
         </spatial>
-        <spatial group="0" name="EX_w_ul">
+        <spatial group="0" name="EX_w_ul" range="0 1">
             <site site="arm_EWU_back"/>
             <site site="arm_EWU_front"/>
             <site site="palm_EWU"/>
@@ -532,9 +555,40 @@
             <site site="palm_4"/>
             <pulley divisor="4"/>
             <site site="palm_af"/>
-            <site site="palm_5"/>
+            <site site="palm_4"/>
+        </spatial>        
+        <spatial group="1" name="FL_poll_long" range="0 1">
+            <site site="FP1_ab"/>
+            <site site="FP1_af"/>
+            <site site="FP1_pb"/>
+            <site site="FP1_f1"/>
+            <site site="FP1_f2"/>
+            <site site="FP1_f3"/>
+            <site site="FP1_f4"/>
+        </spatial>        
+        <spatial group="1" name="AB1_ex" range="0 1">
+            <site site="AB1_ab"/>
+            <site site="AB1_af"/>
+            <site site="AB1_pb"/>
+            <site site="AB1_f1"/>
         </spatial>
-        <spatial group="2" name="FL_prof2">
+        <spatial group="1" name="EX1_long" range="0 1">
+            <site site="EPL_ab"/>
+            <site site="EPL_af"/>
+            <site site="EPL_pb"/>
+            <site site="EPL_f1"/>
+            <site site="EPL_f2"/>
+            <site site="EPL_f3"/>
+            <site site="EPL_f4"/>
+        </spatial>
+        <spatial group="1" name="EX1_short" range="0 1">
+            <site site="EPB_ab"/>
+            <site site="EPB_af"/>
+            <site site="EPB_pb"/>
+            <site site="EPB_f1"/>
+            <site site="EPB_f2"/>
+        </spatial>
+        <spatial group="2" name="FL_prof2" range="0 1">
             <site site="FP2_ab"/>
             <site site="FP2_af"/>
             <site site="FP2_pb"/>
@@ -544,72 +598,8 @@
             <site site="FP2_f3"/>
             <site site="FP2_f4"/>
             <site site="FP2_f5"/>
-        </spatial>
-        <spatial group="3" name="FL_prof3">
-            <site site="FP3_ab"/>
-            <site site="FP3_af"/>
-            <site site="FP3_pb"/>
-            <site site="FP3_pf"/>
-            <site site="FP3_f1"/>
-            <site site="FP3_f2"/>
-            <site site="FP3_f3"/>
-            <site site="FP3_f4"/>
-            <site site="FP3_f5"/>
         </spatial>        
-        <spatial group="4" name="FL_prof4" range="0 1">
-            <site site="FP4_ab"/>
-            <site site="FP4_af"/>
-            <site site="FP4_pb"/>
-            <site site="FP4_pf"/>
-            <site site="FP4_f1"/>
-            <site site="FP4_f2"/>
-            <site site="FP4_f3"/>
-            <site site="FP4_f4"/>
-            <site site="FP4_f5"/>  
-        </spatial>
-        <spatial group="5" name="FL_prof5">
-            <site site="FP5_ab"/>
-            <site site="FP5_af"/>
-            <site site="FP5_pb"/>
-            <site site="FP5_mc"/>
-            <site site="FP5_f1"/>
-            <site site="FP5_f2"/>
-            <site site="FP5_f3"/>
-            <site site="FP5_f4"/>
-            <site site="FP5_f5"/>  
-        </spatial>
-        <spatial group="1" name="FL_poll_long">
-            <site site="FP1_ab"/>
-            <site site="FP1_af"/>
-            <site site="FP1_pb"/>
-            <site site="FP1_f1"/>
-            <site site="FP1_f2"/>
-            <site site="FP1_f3"/>
-            <site site="FP1_f4"/>
-        </spatial>        
-        <spatial name="AB1_ex">
-            <site site="AB1_ab"/>
-            <site site="AB1_af"/>
-            <site site="AB1_pb"/>
-            <site site="AB1_f1"/>
-        </spatial>
-        <spatial name="EX1_long">
-            <site site="EPL_ab"/>
-            <site site="EPL_af"/>
-            <site site="EPL_pb"/>
-            <site site="EPL_f1"/>
-            <site site="EPL_f2"/>
-            <site site="EPL_f3"/>
-            <site site="EPL_f4"/>
-        </spatial>
-        <spatial name="EX1_short">
-            <site site="EPB_ab"/>
-            <site site="EPB_af"/>
-            <site site="EPB_pb"/>
-            <site site="EPB_f1"/>
-            <site site="EPB_f2"/>
-        </spatial>
-        <spatial group="2" name="FL_sup2">
+        <spatial group="2" name="FL_sup2" range="0 1">
             <site site="FP2_ab"/>
             <site site="FP2_af"/>
             <site site="FP2_pb"/>
@@ -623,53 +613,8 @@
             <site site="FP2_f1"/>
             <site site="FS2_f1b"/>
             <site site="FS2_f2"/>
-        </spatial>
-        <spatial group="3" name="FL_sup3">
-            <site site="FP3_ab"/>
-            <site site="FP3_af"/>
-            <site site="FP3_pb"/>
-            <site site="FP3_pf"/>
-            <site site="FP3_f1"/>
-            <pulley divisor="2"/>
-            <site site="FP3_f1"/>
-            <site site="FS3_f1a"/>
-            <site site="FS3_f2"/>
-            <pulley divisor="2"/>
-            <site site="FP3_f1"/>
-            <site site="FS3_f1b"/>
-            <site site="FS3_f2"/>
-        </spatial>
-        <spatial name="FL_sup4">
-            <site site="FP4_ab"/>
-            <site site="FP4_af"/>
-            <site site="FP4_pb"/>
-            <site site="FP4_pf"/>
-            <site site="FP4_f1"/>
-            <pulley divisor="2"/>
-            <site site="FP4_f1"/>
-            <site site="FS4_f1a"/>
-            <site site="FS4_f2"/>
-            <pulley divisor="2"/>
-            <site site="FP4_f1"/>
-            <site site="FS4_f1b"/>
-            <site site="FS4_f2"/>
-        </spatial>
-        <spatial name="FL_sup5">
-            <site site="FP5_ab"/>
-            <site site="FP5_af"/>
-            <site site="FP5_pb"/>
-            <site site="FP5_mc"/>
-            <site site="FP5_f1"/>
-            <pulley divisor="2"/>
-            <site site="FP5_f1"/>
-            <site site="FS5_f1a"/>
-            <site site="FS5_f2"/>
-            <pulley divisor="2"/>
-            <site site="FP5_f1"/>
-            <site site="FS5_f1b"/>
-            <site site="FS5_f2"/>
         </spatial>        
-        <spatial name="EX2_a">
+        <spatial group="2" name="EX2_a" range="0 1">
             <site site="ED2_ab"/>
             <site site="ED2_af"/>
             <site site="ED2_pb"/>
@@ -688,7 +633,7 @@
             <site site="ED2a_f4b"/>
             <site site="ED2_f5"/>
         </spatial>
-        <spatial name="EX2_b">
+        <spatial group="2" name="EX2_b" range="0 1">
             <site site="ED2_ab"/>
             <site site="ED2_af"/>
             <site site="ED2_pb"/>
@@ -699,7 +644,33 @@
             <site site="ED2b_f4"/>
             <site site="ED2_f5"/>
         </spatial>
-        <spatial name="EX3">
+        <spatial group="3" name="FL_prof3" range="0 1">
+            <site site="FP3_ab"/>
+            <site site="FP3_af"/>
+            <site site="FP3_pb"/>
+            <site site="FP3_pf"/>
+            <site site="FP3_f1"/>
+            <site site="FP3_f2"/>
+            <site site="FP3_f3"/>
+            <site site="FP3_f4"/>
+            <site site="FP3_f5"/>
+        </spatial>         
+        <spatial group="3" name="FL_sup3" range="0 1">
+            <site site="FP3_ab"/>
+            <site site="FP3_af"/>
+            <site site="FP3_pb"/>
+            <site site="FP3_pf"/>
+            <site site="FP3_f1"/>
+            <pulley divisor="2"/>
+            <site site="FP3_f1"/>
+            <site site="FS3_f1a"/>
+            <site site="FS3_f2"/>
+            <pulley divisor="2"/>
+            <site site="FP3_f1"/>
+            <site site="FS3_f1b"/>
+            <site site="FS3_f2"/>
+        </spatial>
+        <spatial group="3" name="EX3" range="0 1">
             <site site="ED3_ab"/>
             <site site="ED3_af"/>
             <site site="ED3_pb"/>
@@ -718,7 +689,33 @@
             <site site="ED3_f4b"/>
             <site site="ED3_f5"/>
         </spatial>
-        <spatial name="EX4">
+        <spatial group="4" name="FL_prof4" range="0 1">
+            <site site="FP4_ab"/>
+            <site site="FP4_af"/>
+            <site site="FP4_pb"/>
+            <site site="FP4_pf"/>
+            <site site="FP4_f1"/>
+            <site site="FP4_f2"/>
+            <site site="FP4_f3"/>
+            <site site="FP4_f4"/>
+            <site site="FP4_f5"/>  
+        </spatial>
+        <spatial group="4" name="FL_sup4" range="0 1">
+            <site site="FP4_ab"/>
+            <site site="FP4_af"/>
+            <site site="FP4_pb"/>
+            <site site="FP4_pf"/>
+            <site site="FP4_f1"/>
+            <pulley divisor="2"/>
+            <site site="FP4_f1"/>
+            <site site="FS4_f1a"/>
+            <site site="FS4_f2"/>
+            <pulley divisor="2"/>
+            <site site="FP4_f1"/>
+            <site site="FS4_f1b"/>
+            <site site="FS4_f2"/>
+        </spatial>        
+        <spatial group="4" name="EX4" range="0 1">
             <site site="ED4_ab"/>
             <site site="ED4_af"/>
             <site site="ED4_pb"/>
@@ -737,7 +734,33 @@
             <site site="ED4_f4b"/>
             <site site="ED4_f5"/>
         </spatial>
-        <spatial name="EX5_a">
+        <spatial group="5" name="FL_prof5" range="0 1">
+            <site site="FP5_ab"/>
+            <site site="FP5_af"/>
+            <site site="FP5_pb"/>
+            <site site="FP5_mc"/>
+            <site site="FP5_f1"/>
+            <site site="FP5_f2"/>
+            <site site="FP5_f3"/>
+            <site site="FP5_f4"/>
+            <site site="FP5_f5"/>  
+        </spatial>
+        <spatial group="5" name="FL_sup5" range="0 1">
+            <site site="FP5_ab"/>
+            <site site="FP5_af"/>
+            <site site="FP5_pb"/>
+            <site site="FP5_mc"/>
+            <site site="FP5_f1"/>
+            <pulley divisor="2"/>
+            <site site="FP5_f1"/>
+            <site site="FS5_f1a"/>
+            <site site="FS5_f2"/>
+            <pulley divisor="2"/>
+            <site site="FP5_f1"/>
+            <site site="FS5_f1b"/>
+            <site site="FS5_f2"/>
+        </spatial>        
+        <spatial group="5" name="EX5_a" range="0 1">
             <site site="ED5a_ab"/>
             <site site="ED5a_af"/>
             <site site="ED5a_pb"/>
@@ -756,7 +779,7 @@
             <site site="ED5a_f4b"/>
             <site site="ED5_f5"/>
         </spatial>
-        <spatial name="EX5_b">
+        <spatial group="5" name="EX5_b" range="0 1">
             <site site="ED5b_ab"/>
             <site site="ED5b_af"/>
             <site site="ED5b_pb"/>
@@ -767,9 +790,64 @@
             <site site="ED5b_f4"/>
             <site site="ED5_f5"/>
         </spatial>
-
     </tendon>
 
+    %intrinsic
+    <tendon>
+        <spatial group="1" name="FL1_short">
+            <site site="F1B_pm"/>
+            <site site="F1B_f1"/>
+        </spatial>
+        <spatial group="1" name="OP1">
+            <site site="OP1_pm"/>
+            <site site="OP1_pr"/>
+            <pulley divisor="2"/>
+            <site site="OP1_pr"/>
+            <site site="OP1_f1a"/>
+            <pulley divisor="2"/>
+            <site site="OP1_pr"/>
+            <site site="OP1_f1b"/>
+        </spatial>
+        <spatial group="1" name="AD1">
+            <site site="AD1_f1"/>
+            <site site="AD1_f2"/>
+            <pulley divisor="4"/>
+            <site site="AD1_f2"/>
+            <site site="AD1_pf"/>
+            <pulley divisor="4"/>
+            <site site="AD1_f2"/>
+            <site site="AD1_pb"/>
+            <pulley divisor="4"/>
+            <site site="AD1_f2"/>
+            <site site="AD1_pma"/>
+            <pulley divisor="4"/>
+            <site site="AD1_f2"/>
+            <site site="AD1_pmb"/>
+        </spatial>
+        <spatial group="1" name="AB1_short">
+            <site site="AB1B_pm"/>
+            <site site="AB1B_pr"/>
+            <site site="AB1B_f1"/>
+        </spatial>                     
+        <spatial group="5" name="FL5_short">
+            <site site="F5M_pm"/>
+            <site site="F5M_pr"/>
+            <site site="F5M_f1"/>
+        </spatial>    
+        <spatial group="5" name="OP5">
+            <site site="OP5_pm"/>
+            <site site="OP5_mc"/>
+        </spatial>   
+        <spatial group="5" name="AB5">
+            <site site="AB5_pr"/>
+            <site site="AB5_mc"/>
+            <site site="AB5_f1"/>
+        </spatial> 
+    </tendon>
+
+% muscles
+
+    %extrinsic
     <actuator>
         % wrist
         <muscle group="0" name="fl_wr_ul" lengthrange="0.05 0.6" tendon="FL_w_ul" force="500"/>
@@ -788,34 +866,37 @@
         <muscle group="2" name="ex_2_A" lengthrange="0.05 0.6" tendon="EX2_a" force="500"/>  
         <muscle group="2" name="ex_2_B" lengthrange="0.05 0.6" tendon="EX2_b" force="500"/>
         <muscle group="3" name="fl_prof_3" lengthrange="0.05 0.6" tendon="FL_prof3" force="500"/>
-        <muscle group="3" name="fl_sup_3" lengthrange="0.05 0.6" tendon="FL_sup3" force="5000"/>
+        <muscle group="3" name="fl_sup_3" lengthrange="0.05 0.6" tendon="FL_sup3" force="500"/>
         <muscle group="3" name="ex_3" lengthrange="0.05 0.6" tendon="EX3" force="500"/>  
         <muscle group="4" name="fl_prof_4" lengthrange="0.05 0.6" tendon="FL_prof4" force="500"/>
-        <muscle group="4" name="fl_sup_4" lengthrange="0.05 0.6" tendon="FL_sup4" force="5000"/>
+        <muscle group="4" name="fl_sup_4" lengthrange="0.05 0.6" tendon="FL_sup4" force="500"/>
         <muscle group="4" name="ex_4" lengthrange="0.05 0.6" tendon="EX4" force="500"/>   
         <muscle group="5" name="fl_prof_5" lengthrange="0.05 0.8" tendon="FL_prof5" force="500"/>
-        <muscle group="5" name="fl_sup_5" lengthrange="0.05 0.6" tendon="FL_sup5" force="5000"/>
+        <muscle group="5" name="fl_sup_5" lengthrange="0.05 0.6" tendon="FL_sup5" force="500"/>
         <muscle group="5" name="ex_5_A" lengthrange="0.05 0.6" tendon="EX5_a" force="500"/>  
         <muscle group="5" name="ex_5_B" lengthrange="0.05 0.6" tendon="EX5_b" force="500"/>  
     </actuator>
 
-
+    % intrinsic
+    <actuator>
+        <muscle group="1" lengthrange="0.05 0.6" name="fl_1_short" tendon="FL1_short" force="500"/>
+        <muscle group="1" lengthrange="0.05 0.6" name="op_1" tendon="OP1" force="500"/>  
+        <muscle group="1" lengthrange="0.05 0.6" name="ad_1" tendon="AD1" force="500"/>
+        <muscle group="1" lengthrange="0.05 0.6" name="ab_1_short" tendon="AB1_short" force="500"/> 
+        <muscle group="5" lengthrange="0.05 0.6" name="fl_5_short" tendon="FL5_short" force="500"/> 
+        <muscle group="5" lengthrange="0.05 0.6" name="op_5" tendon="OP5" force="500"/> 
+        <muscle group="5" lengthrange="0.05 0.6" name="ab5" tendon="AB5" force="500"/>
+    </actuator>
     <!-- %intrinsic
     <tendon>
-        <spatial name="FL1_short">
-        </spatial>    
-        <spatial name="AB1_short">
-        </spatial>    
-        <spatial name="AB1_int">
-        </spatial>    
-        <spatial name="AD1">
-        </spatial>    
-        <spatial name="OP1">
-        </spatial>    
-        <spatial name="FL5_short">
-        </spatial>    
-        <spatial name="OP5">
-        </spatial>    
+         
+
+   
+
+ 
+ 
+ 
+
         <spatial name="LUMB1">
         </spatial>    
         <spatial name="LUMB2">
@@ -841,21 +922,15 @@
     </tendon>
 
 % muscles
-    % extrinsic    
-    <actuator>
-
-  
-    </actuator> 
-
     % intrinsic
     <actuator>
-        <muscle name="fl_1_short" tendon="FL1_short"/>
-        <muscle name="ab_1_short" tendon="AB1_short"/>    
-        <muscle name="ab_1_int" tendon="AB1_int"/>
-        <muscle name="ad_1" tendon="AD1"/>
-        <muscle name="op_1" tendon="OP1"/>   
-        <muscle name="fl_5_short" tendon="FL5_short"/>     
-        <muscle name="op_5" tendon="OP5"/>
+
+   
+
+
+ 
+   
+
         <muscle name="lumb_1" tendon="LUMB1"/>
         <muscle name="lumb_2" tendon="LUMB2"/>
         <muscle name="lumb_3" tendon="LUMB3"/>
