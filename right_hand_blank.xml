@@ -1,0 +1,1011 @@
+<mujoco model="right_shadow_hand">
+    
+    <compiler angle="radian" meshdir="assets" autolimits="true"/>
+
+    <visual>
+        <headlight diffuse=".7 .7 .7"/>
+    </visual>
+
+    <option impratio="10"/>
+
+    <default>
+        <site type="sphere" rgba=".9 .9 .9 1" size="0.002"/>
+        <tendon width="0.001"/>
+        <default class="intrinsic">
+            <tendon rgba="0 .5 .5 .8"/>
+        </default>
+        <default class="extrinsic">
+            <tendon rgba=".4 .9 .5 1"/>
+        </default>
+        <default class="wrist_ex">
+            <tendon rgba="1 .5 0 1"/>
+        </default>
+        <default class="thumb_ex">
+            <tendon rgba=".9 0 .3 1"/>
+        </default>
+        <default class="thumb_int">
+            <tendon rgba=".4 .4 .7 1"/>
+        </default>
+        <default class="lf_ex">
+            <tendon rgba=".2 .9 .3 1"/>
+        </default>
+        <default class="lf_int">
+            <tendon rgba=".7 .6 .2 1"/>
+        </default>
+        <default class="finger_ex">
+            <tendon rgba=".4 .7 .9 1"/>
+        </default>
+        <default class="finger_int">
+            <tendon rgba=".4 .9 .9 1"/>
+        </default>
+        <default class="finger_lum">
+            <tendon rgba=".6 .3 .5 1"/>
+        </default>
+        <default class="right_hand">
+            <mesh scale="0.001 0.001 0.001"/>
+            <joint axis="1 0 0" damping="0.05" armature="0.0002" frictionloss="0.01"/>
+            <position forcerange="-1 1"/>
+            <default class="wrist">
+                <joint damping="0.5"/>
+                <default class="wrist_y">
+                    <joint axis="0 1 0" range="-0.523599 0.174533"/>
+                    <position kp="10" ctrlrange="-0.523599 0.174533" forcerange="-10 10"/>
+                </default>
+                <default class="wrist_x">
+                    <joint range="-0.698132 0.488692"/>
+                    <position kp="8" ctrlrange="-0.698132 0.488692" forcerange="-5 5"/>
+                </default>
+            </default>
+            <default class="thumb">
+                <default class="thbase">
+                    <joint axis="0 0 -1" range="-1.0472 1.0472"/>
+                    <position kp="0.4" ctrlrange="-1.0472 1.0472" forcerange="-3 3"/>
+                </default>
+                <default class="thproximal">
+                    <joint range="0 1.22173"/>
+                    <position ctrlrange="0 1.22173" forcerange="-2 2"/>
+                </default>
+                <default class="thhub">
+                    <joint range="-0.20944 0.20944"/>
+                    <position kp="0.5" ctrlrange="-0.20944 0.20944"/>
+                </default>
+                <default class="thmiddle">
+                    <joint axis="0 -1 0" range="-0.698132 0.698132"/>
+                    <position kp="1.5" ctrlrange="-0.698132 0.698132"/>
+                </default>
+                <default class="thdistal">
+                    <joint range="-0.261799 1.5708"/>
+                    <position ctrlrange="-0.261799 1.5708"/>
+                </default>
+            </default>
+            <default class="metacarpal">
+                <joint axis="0.573576 0 0.819152" range="0 0.785398"/>
+                <position ctrlrange="0 0.785398"/>
+            </default>
+            <default class="knuckle">
+                <joint axis="0 -1 0" range="-0.349066 0.349066"/>
+                <position ctrlrange="-0.349066 0.349066"/>
+            </default>
+            <default class="proximal">
+                <joint range="-0.261799 1.5708"/>
+                <position ctrlrange="-0.261799 1.5708"/>
+            </default>
+            <default class="middle_distal">
+                <joint range="0 1.5708"/>
+                <position kp="0.5" ctrlrange="0 3.1415"/>
+            </default>
+            <default class="plastic">
+                <geom solimp="0.5 0.99 0.0001" solref="0.005 1"/>
+                <default class="plastic_visual">
+                    <geom type="mesh" material="black" contype="0" conaffinity="0" group="2"/>
+                </default>
+                <default class="plastic_collision">
+                    <geom group="3"/>
+                </default>
+            </default>
+        </default>
+    </default>
+
+    <asset>
+        <material name="black" specular="0.5" shininess="0.25" rgba="0.16355 0.16355 0.16355 1"/>
+        <material name="gray" specular="0.0" shininess="0.25" rgba="0.80848 0.80848 0.80848 1"/>
+        <material name="metallic" specular="0" shininess="0.25" rgba="0.9 0.9 0.9 1"/>
+
+        <mesh class="right_hand" file="forearm_0.obj"/>
+        <mesh class="right_hand" file="forearm_1.obj"/>
+        <mesh class="right_hand" file="forearm_collision.obj"/>
+        <mesh class="right_hand" file="wrist.obj"/>
+        <mesh class="right_hand" file="palm.obj"/>
+        <mesh class="right_hand" file="f_knuckle.obj"/>
+        <mesh class="right_hand" file="f_proximal.obj"/>
+        <mesh class="right_hand" file="f_middle.obj"/>
+        <mesh class="right_hand" file="f_distal_pst.obj"/>
+        <mesh class="right_hand" file="lf_metacarpal.obj"/>
+        <mesh class="right_hand" file="th_proximal.obj"/>
+        <mesh class="right_hand" file="th_middle.obj"/>
+        <mesh class="right_hand" file="th_distal_pst.obj"/>
+    </asset>
+
+    <worldbody>
+        <light pos="0 0 -1"/>
+        <light pos="0.3 0 1.5" dir="0 0 -1" />
+        <body name="rh_forearm" childclass="right_hand" quat="1 -1 1 -1">
+            <inertial mass="3" pos="0 0 0.09" diaginertia="0.0138 0.0138 0.00744"/>
+            <geom class="plastic_visual" mesh="forearm_0" material="gray"/>
+            <geom class="plastic_visual" mesh="forearm_1"/>
+            <geom class="plastic_collision" type="mesh" mesh="forearm_collision"/>
+            <geom class="plastic_collision" size="0.035 0.035 0.035" pos="0 -0.01 0.181" quat="0.924909 0 0.380188 0" type="box"/>
+
+            <site group="0" name="arm_FWU_back" pos="-0.01 -0.07 0"/>
+            <site group="0" name="arm_FWU_front" pos="-0.01 -0.07 0.16"/>
+            <site group="0" name="arm_FWR_back" pos="0.02 -0.07 0"/>
+            <site group="0" name="arm_FWR_front" pos="0.02 -0.07 0.16"/>
+            <site group="0" name="arm_EWRS_back" pos="0.02 0.07 0"/>
+            <site group="0" name="arm_EWRS_front" pos="0.02 0.07 0.16"/>
+            <site group="0" name="arm_EWRL_back" pos="0.022 0.07 0"/>
+            <site group="0" name="arm_EWRL_front" pos="0.022 0.07 0.16"/>
+            <site group="0" name="arm_EWU_back" pos="-0.02 0.07 0"/>
+            <site group="0" name="arm_EWU_front" pos="-0.02 0.07 0.16"/>
+            <site group="0" name="palm_ab" pos="0 -0.07 0"/>
+            <site group="0" name="palm_af" pos="0 -0.07 0.16"/>
+
+            <site group="1" name="FP1_ab" pos="0.03 -0.064 0"/>
+            <site group="1" name="FP1_af" pos="0.03 -0.064 0.16"/>
+            <site group="1" name="EPL_ab" pos="0.018 0.064 0"/>
+            <site group="1" name="EPL_af" pos="0.024 0.064 0.16"/>
+            <site group="1" name="EPB_ab" pos="0.015 0.064 0"/>
+            <site group="1" name="EPB_af" pos="0.026 0.064 0.16"/>
+            <site group="1" name="AB1_ab" pos="0.024 0.064 0"/>
+            <site group="1" name="AB1_af" pos="0.028 0.064 0.16"/>
+
+            <site group="2" name="FP2_ab" pos="0.025 -0.065 0"/>
+            <site group="2" name="FP2_af" pos="0.02 -0.065 0.16"/>
+            <site group="2" name="ED2_ab" pos="0.005 0.07 0"/>
+            <site group="2" name="ED2_af" pos="0.005 0.07 0.16"/>
+
+            <site group="3" name="FP3_ab" pos="0.012 -0.068 0"/>
+            <site group="3" name="FP3_af" pos="0.012 -0.065 0.16"/>
+            <site group="3" name="ED3_ab" pos="0 0.07 0"/>
+            <site group="3" name="ED3_af" pos="0 0.07 0.16"/>
+
+            <site group="4" name="FP4_ab" pos="0.005 -0.068 0"/>
+            <site group="4" name="FP4_af" pos="0.005 -0.068 0.16"/>
+            <site group="4" name="ED4_ab" pos="-0.005 0.07 0"/>
+            <site group="4" name="ED4_af" pos="-0.005 0.07 0.16"/>
+            
+            <site group="5" name="FP5_ab" pos="-0.005 -0.068 0"/>
+            <site group="5" name="FP5_af" pos="-0.005 -0.068 0.16"/>
+            <site group="5" name="ED5a_ab" pos="-0.01 0.07 0"/>
+            <site group="5" name="ED5a_af" pos="-0.01 0.07 0.16"/>
+            <site group="5" name="ED5b_ab" pos="-0.018 0.07 0"/>
+            <site group="5" name="ED5b_af" pos="-0.018 0.07 0.16"/>
+
+
+            <body name="rh_wrist" pos="0 -0.01 0.21301">
+                <inertial mass="0.1" pos="0 0 0.029" quat="0.5 0.5 0.5 0.5" diaginertia="6.4e-05 4.38e-05 3.5e-05"/>
+                <joint class="wrist_y" name="rh_WRJ2"/>
+                <geom class="plastic_visual" mesh="wrist" material="metallic"/>
+                <geom size="0.0135 0.015" quat="0.499998 0.5 0.5 -0.500002" type="cylinder" class="plastic_collision" rgba=".95 .3 .3 1"/>
+                <geom size="0.011 0.005" pos="-0.026 0 0.034" quat="1 0 1 0" type="cylinder" class="plastic_collision"/>
+                <geom size="0.011 0.005" pos="0.031 0 0.034" quat="1 0 1 0" type="cylinder" class="plastic_collision"/>
+                <geom size="0.0135 0.009 0.005" pos="-0.021 0 0.011" quat="0.923879 0 0.382684 0" type="box" class="plastic_collision"/>
+                <geom size="0.0135 0.009 0.005" pos="0.026 0 0.01" quat="0.923879 0 -0.382684 0" type="box" class="plastic_collision"/>
+                <body name="rh_palm" pos="0 0 0.034">
+                    <inertial mass="0.3" pos="0 0 0.035" quat="1 0 0 1" diaginertia="0.0005287 0.0003581 0.000191"/>
+                    <joint class="wrist_x" name="rh_WRJ1"/>
+                    <site name="grasp_site" pos="0 -.035 0.09" rgba=".95 .3 .3 1" group="6"/>
+                    <geom class="plastic_visual" mesh="palm"/>
+                    <geom size="0.031 0.0035 0.049" pos="0.011 0.0085 0.038" type="box" class="plastic_collision"/>
+                    <geom size="0.018 0.0085 0.049" pos="-0.002 -0.0035 0.038" type="box" class="plastic_collision"/>
+                    <geom size="0.013 0.0085 0.005" pos="0.029 -0.0035 0.082" type="box" class="plastic_collision"/>
+                    <geom size="0.013 0.007 0.009" pos="0.0265 -0.001 0.07" quat="0.987241 0.0990545 0.0124467 0.124052" type="box" class="plastic_collision"/>
+                    <geom size="0.0105 0.0135 0.012" pos="0.0315 -0.0085 0.001" type="box" class="plastic_collision"/>
+                    <geom size="0.011 0.0025 0.015" pos="0.0125 -0.015 0.004" quat="0.971338 0 0 -0.237703" type="box" class="plastic_collision"/>
+                    <geom size="0.009 0.012 0.002" pos="0.011 0 0.089" type="box" class="plastic_collision"/>
+                    <geom size="0.01 0.012 0.02" pos="-0.03 0 0.009" type="box" class="plastic_collision"/>
+
+                    <site group="0" name="palm_FWU" pos="-0.02 -0.022 0"/>
+                    <site group="0" name="palm_FWR" pos="0.02 -0.022 0"/>
+                    <site group="0" name="palm_EWRS" pos="0.015 0.011 0.015"/>
+                    <site group="0" name="palm_EWRL" pos="0.025 0.011 0.015"/>
+                    <site group="0" name="palm_EWU" pos="-0.025 0.011 0.015"/>
+                    <site group="0" name="palm_2" pos="0.034 -0.011 0.084"/>
+                    <site group="0" name="palm_3" pos="0.013 -0.011 0.084"/>
+                    <site group="0" name="palm_4" pos="-0.01 -0.011 0.084"/>
+
+                    <site group="1" name="FP1_pb" pos="0.015 -0.022 0.015"/>
+                    <site group="1" name="EPL_pb" pos="0.036 0.011 0.015"/>
+                    <site group="1" name="EPB_pb" pos="0.04 0.011 0.015"/>
+                    <site group="1" name="AB1_pb" pos="0.042 0.006 0.012"/>
+                    <site group="1" name="F1B_pm" pos="0 -0.02 0.015"/>
+                    <site group="1" name="OP1_pm" pos="0 -0.02 0.015"/>
+                    <site group="1" name="OP1_pr" pos="0 -0.02 0.03"/>
+                    <site group="1" name="AD1_pb" pos="0 -0.02 0.015"/>
+                    <site group="1" name="AD1_pf" pos="0 -0.02 0.06"/>
+                    <site group="1" name="AD1_pma" pos="0 -0.02 0.03"/>
+                    <site group="1" name="AD1_pmb" pos="0 -0.02 0.045"/>
+                    <site group="1" name="AB1B_pm" pos="0 -0.02 0.015"/>
+                    <site group="1" name="AB1B_pr" pos="0.03 -0.025 0.015"/>
+
+                    <site group="2" name="FP2_pb" pos="0.01 -0.022 0.015"/>
+                    <site group="2" name="FP2_pf" pos="0.029 -0.013 0.084"/>
+                    <site group="2" name="ED2_pb" pos="0.01 0.012 0.015"/>
+                    <site group="2" name="ED2_pf" pos="0.032 0.012 0.09"/>
+                    <site group="2" name="PI2_pb" pos="0.01 -0.022 0.015"/>
+                    <site group="2" name="DI2_pb" pos="0.024 0.012 0.025"/>
+                    <site group="2" name="DI2_pf" pos="0.024 0.012 0.03"/> 
+
+                    <site group="3" name="FP3_pb" pos="0.005 -0.022 0.015"/>
+                    <site group="3" name="FP3_pf" pos="0.01 -0.013 0.084"/>
+                    <site group="3" name="ED3_pb" pos="0 0.012 0.015"/>
+                    <site group="3" name="ED3_pf" pos="0.01 0.012 0.09"/>
+                    <site group="3" name="DI3_pb" pos="0.015 0.012 0.025"/>
+                    <site group="3" name="DI4_pb" pos="-0.005 0.012 0.025"/>
+
+                    <site group="4" name="FP4_pb" pos="-0.005 -0.022 0.015"/>
+                    <site group="4" name="FP4_pf" pos="-0.0115 -0.013 0.084"/>
+                    <site group="4" name="ED4_pb" pos="-0.005 0.012 0.015"/>
+                    <site group="4" name="ED4_pf" pos="-0.012 0.012 0.09"/>
+                    <site group="4" name="PI4_pb" pos="-0.01 -0.022 0.015"/>
+                    <site group="4" name="DI5_pb" pos="-0.018 0.012 0.038"/>
+                    <site group="4" name="DI5_pf" pos="-0.018 0.012 0.04"/>
+
+                    <site group="5" name="FP5_pb" pos="-0.01 -0.022 0.015"/>
+                    <site group="5" name="ED5a_pb" pos="-0.012 0.012 0.015"/>
+                    <site group="5" name="ED5b_pb" pos="-0.02 0.012 0.015"/>
+                    <site group="5" name="F5M_pm" pos="0 -0.02 0.015"/>
+                    <site group="5" name="F5M_pr" pos="-0.025 -0.02 0.015"/>
+                    <site group="5" name="OP5_pm" pos="0 -0.02 0.015"/>
+                    <site group="5" name="AB5_pr" pos="-0.02 -0.015 0.015"/>
+
+                    <body name="rh_ffknuckle" pos="0.033 0 0.095">
+                        <inertial mass="0.008" pos="0 0 0" quat="0.5 0.5 -0.5 0.5" diaginertia="3.2e-07 2.6e-07 2.6e-07"/>
+                        <joint name="rh_FFJ4" class="knuckle"/>
+                        <geom pos="0 0 0.0005" class="plastic_visual" mesh="f_knuckle" material="metallic"/>
+                        <geom size="0.009 0.009" quat="1 0 1 0" type="cylinder" class="plastic_collision"/>
+                        <body name="rh_ffproximal">
+                            <inertial mass="0.03" pos="0 0 0.0225" quat="1 0 0 1" diaginertia="1e-05 9.8e-06 1.8e-06"/>
+                            <joint name="rh_FFJ3" class="proximal"/>
+                            <geom class="plastic_visual" mesh="f_proximal"/>
+                            <geom size="0.009 0.02" pos="0 0 0.025" type="capsule" class="plastic_collision"/>
+
+                            <site group="2" name="FP2_f1" pos="0 -0.01 0.005"/>
+                            <site group="2" name="FP2_f2" pos="0 -0.01 0.03"/>
+                            <site group="2" name="FS2_f1a" pos="-0.008 -0.01 0.03"/>
+                            <site group="2" name="FS2_f1b" pos="0.008 -0.01 0.03"/>
+                            <site group="2" name="ED2_f1" pos="0 0.01 0.012"/>
+                            <site group="2" name="ED2a_f2a" pos="0.006 0.009 0.035"/>
+                            <site group="2" name="ED2a_f2b" pos="-0.006 0.009 0.035"/>
+                            <site group="2" name="ED2b_f2" pos="0 0.009 0.03"/>
+                            <site group="2" name="PI2_f1" pos="-0.0085 -0.01 0.01"/>
+                            <site group="2" name="DI2_f1" pos="0.0082 0.009 0.013"/>
+                            <site group="2" name="DI2_f2" pos="0.0082 0.009 0.014"/>
+
+                            <body name="rh_ffmiddle" pos="0 0 0.045"> 
+                                <inertial mass="0.017" pos="0 0 0.0125" quat="1 0 0 1" diaginertia="2.7e-06 2.6e-06 8.7e-07"/>
+                                <joint name="rh_FFJ2" class="middle_distal"/>
+                                <geom class="plastic_visual" mesh="f_middle"/>
+                                <geom size="0.009 0.0125" pos="0 0 0.0125" type="capsule" class="plastic_collision"/>
+
+                                <site group="2" name="FP2_f3" pos="0 -0.009 0.005"/>
+                                <site group="2" name="FP2_f4" pos="0 -0.009 0.024"/>
+                                <site group="2" name="FS2_f2" pos="0 -0.009 0.008"/>
+                                <site group="2" name="ED2a_f3a" pos="0.006 0.008 0.005"/>
+                                <site group="2" name="ED2a_f3b" pos="-0.006 0.008 0.005"/>
+                                <site group="2" name="ED2a_f4a" pos="0.004 0.008 0.023"/>
+                                <site group="2" name="ED2a_f4b" pos="-0.004 0.008 0.023"/>
+                                <site group="2" name="ED2b_f3" pos="0 0.008 0.005"/>
+                                <site group="2" name="ED2b_f4" pos="0 0.008 0.02"/>
+
+                                <body name="rh_ffdistal" pos="0 0 0.025">
+                                    <inertial mass="0.013" pos="0 0 0.0130769" quat="1 0 0 1" diaginertia="1.28092e-06 1.12092e-06 5.3e-07"/>
+                                    <joint name="rh_FFJ1" class="middle_distal"/>
+                                    <geom class="plastic_visual" mesh="f_distal_pst"/>
+                                    <geom class="plastic_collision" type="mesh" mesh="f_distal_pst"/>
+
+                                    <site group="2" name="FP2_f5" pos="0 -0.008 0.008"/>
+                                    <site group="2" name="ED2_f5" pos="0 0.008 0.01"/>
+
+                                </body>
+                            </body>
+                        </body>
+                    </body>
+                    <body name="rh_mfknuckle" pos="0.011 0 0.099">
+                        <inertial mass="0.008" pos="0 0 0" quat="0.5 0.5 -0.5 0.5" diaginertia="3.2e-07 2.6e-07 2.6e-07"/>
+                        <joint name="rh_MFJ4" class="knuckle"/>
+                        <geom pos="0 0 0.0005" class="plastic_visual" mesh="f_knuckle" material="metallic"/>
+                        <geom size="0.009 0.009" quat="1 0 1 0" type="cylinder" class="plastic_collision"/>
+                        <body name="rh_mfproximal">
+                            <inertial mass="0.03" pos="0 0 0.0225" quat="1 0 0 1" diaginertia="1e-05 9.8e-06 1.8e-06"/>
+                            <joint name="rh_MFJ3" class="proximal"/>
+                            <geom class="plastic_visual" mesh="f_proximal"/>
+                            <geom size="0.009 0.02" pos="0 0 0.025" type="capsule" class="plastic_collision"/>
+                            
+                            <site group="3" name="FP3_f1" pos="0 -0.01 0.005"/>
+                            <site group="3" name="FP3_f2" pos="0 -0.01 0.03"/>
+                            <site group="3" name="FS3_f1a" pos="-0.008 -0.01 0.03"/>
+                            <site group="3" name="FS3_f1b" pos="0.008 -0.01 0.03"/>
+                            <site group="3" name="ED3_f1" pos="0 0.01 0.012"/>
+                            <site group="3" name="ED3_f2a" pos="0.006 0.009 0.035"/>
+                            <site group="3" name="ED3_f2b" pos="-0.006 0.009 0.035"/>
+                            <site group="3" name="DI3_f1" pos="0.007 0.008 0.01"/>
+                            <site group="3" name="DI4_f1" pos="-0.007 0.008 0.01"/>
+
+                            <body name="rh_mfmiddle" pos="0 0 0.045">
+                                <inertial mass="0.017" pos="0 0 0.0125" quat="1 0 0 1" diaginertia="2.7e-06 2.6e-06 8.7e-07"/>
+                                <joint name="rh_MFJ2" class="middle_distal"/>
+                                <geom class="plastic_visual" mesh="f_middle"/>
+                                <geom size="0.009 0.0125" pos="0 0 0.0125" type="capsule" class="plastic_collision"/>
+                                
+                                <site group="3" name="FP3_f3" pos="0 -0.008 0.002"/>
+                                <site group="3" name="FP3_f4" pos="0 -0.008 0.024"/>
+                                <site group="3" name="FS3_f2" pos="0 -0.008 0.015"/>
+                                <site group="3" name="ED3_f3a" pos="0.006 0.008 0.005"/>
+                                <site group="3" name="ED3_f3b" pos="-0.006 0.008 0.005"/>
+                                <site group="3" name="ED3_f4a" pos="0.004 0.008 0.023"/>
+                                <site group="3" name="ED3_f4b" pos="-0.004 0.008 0.023"/>
+
+                                <body name="rh_mfdistal" pos="0 0 0.025">
+                                    <inertial mass="0.013" pos="0 0 0.0130769" quat="1 0 0 1" diaginertia="1.28092e-06 1.12092e-06 5.3e-07"/>
+                                    <joint name="rh_MFJ1" class="middle_distal"/>
+                                    <geom class="plastic_visual" mesh="f_distal_pst"/>
+                                    <geom class="plastic_collision" type="mesh" mesh="f_distal_pst"/>
+                                
+                                    <site group="3" name="FP3_f5" pos="0 -0.008 0.008"/>
+                                    <site group="3" name="ED3_f5" pos="0 0.008 0.01"/>
+
+                                </body>
+                            </body>
+                        </body>
+                    </body>
+                    <body name="rh_rfknuckle" pos="-0.011 0 0.095">
+                        <inertial mass="0.008" pos="0 0 0" quat="0.5 0.5 -0.5 0.5" diaginertia="3.2e-07 2.6e-07 2.6e-07"/>
+                        <joint name="rh_RFJ4" class="knuckle" axis="0 1 0"/>
+                        <geom pos="0 0 0.0005" class="plastic_visual" mesh="f_knuckle" material="metallic"/>
+                        <geom size="0.009 0.009" quat="1 0 1 0" type="cylinder" class="plastic_collision"/>
+                        <body name="rh_rfproximal">
+                            <inertial mass="0.03" pos="0 0 0.0225" quat="1 0 0 1" diaginertia="1e-05 9.8e-06 1.8e-06"/>
+                            <joint name="rh_RFJ3" class="proximal"/>
+                            <geom class="plastic_visual" mesh="f_proximal"/>
+                            <geom size="0.009 0.02" pos="0 0 0.025" type="capsule" class="plastic_collision"/>
+
+                            <site group="4" name="FP4_f1" pos="0 -0.008 0.005"/>
+                            <site group="4" name="FP4_f2" pos="0 -0.008 0.036"/>
+                            <site group="4" name="FS4_f1a" pos="0.008 -0.008 0.026"/>
+                            <site group="4" name="FS4_f1b" pos="-0.008 -0.008 0.026"/>
+                            <site group="4" name="ED4_f1" pos="0 0.01 0.012"/>
+                            <site group="4" name="ED4_f2a" pos="0.006 0.009 0.037"/>
+                            <site group="4" name="ED4_f2b" pos="-0.006 0.009 0.037"/>
+                            <site group="4" name="PI4_f1" pos="0.0084 -0.008 0.012"/>
+                            <site group="4" name="DI5_f1" pos="-0.0085 0.006 0.012"/>
+                            <site group="4" name="DI5_f2" pos="-0.0085 0.006 0.015"/>
+
+                            <body name="rh_rfmiddle" pos="0 0 0.045">
+                                <inertial mass="0.017" pos="0 0 0.0125" quat="1 0 0 1" diaginertia="2.7e-06 2.6e-06 8.7e-07"/>
+                                <joint name="rh_RFJ2" class="middle_distal"/>
+                                <geom class="plastic_visual" mesh="f_middle"/>
+                                <geom size="0.009 0.0125" pos="0 0 0.0125" type="capsule" class="plastic_collision"/>
+                                
+                                <site group="4" name="FP4_f3" pos="0 -0.008 0.005"/>
+                                <site group="4" name="FP4_f4" pos="0 -0.008 0.026"/>
+                                <site group="4" name="FS4_f2" pos="0 -0.008 0.01"/>
+                                <site group="4" name="ED4_f3a" pos="0.006 0.008 0.005"/>
+                                <site group="4" name="ED4_f3b" pos="-0.006 0.008 0.005"/>
+                                <site group="4" name="ED4_f4a" pos="0.004 0.008 0.023"/>
+                                <site group="4" name="ED4_f4b" pos="-0.004 0.008 0.023"/>
+
+                                
+                                <body name="rh_rfdistal" pos="0 0 0.025">
+                                    <inertial mass="0.013" pos="0 0 0.0130769" quat="1 0 0 1" diaginertia="1.28092e-06 1.12092e-06 5.3e-07"/>
+                                    <joint name="rh_RFJ1" class="middle_distal"/>
+                                    <geom class="plastic_visual" mesh="f_distal_pst"/>
+                                    <geom class="plastic_collision" type="mesh" mesh="f_distal_pst"/>
+                                    
+                                    <site group="4" name="FP4_f5" pos="0 -0.008 0.013"/>
+                                    <site group="4" name="ED4_f5" pos="0 0.008 0.01"/>
+
+                                </body>
+                            </body>
+                        </body>
+                    </body>
+                    <body name="rh_lfmetacarpal" pos="-0.033 0 0.02071">
+                        <inertial mass="0.03" pos="0 0 0.04" quat="1 0 0 1" diaginertia="1.638e-05 1.45e-05 4.272e-06"/>
+                        <joint name="rh_LFJ5" class="metacarpal"/>
+                        <geom class="plastic_visual" mesh="lf_metacarpal"/>
+                        <geom size="0.011 0.012 0.025" pos="0.002 0 0.033" type="box" class="plastic_collision"/>
+                        
+                        <site group="0" name="palm_5" pos="0 -0.012 0.06"/>
+                        <site group="5" name="FP5_mc" pos="0 -0.012 0.057"/>
+                        <site group="5" name="ED5a_mc" pos="0 0.012 0.057"/>
+                        <site group="5" name="ED5b_mc" pos="0 0.012 0.03"/>
+                        <site group="5" name="OP5_mc" pos="0 -0.012 0.03"/>
+                        <site group="5" name="AB5_mc" pos="-0.01 -0.008 0.04"/>
+                        <site group="5" name="PI5_mc" pos="0.007 -0.012 0.025"/>
+                        <site group="4" name="DI5_mcb" pos="0.008 0.012 0.014"/>
+                        <site group="4" name="DI5_mcf" pos="0.008 0.012 0.018"/>
+
+                        <body name="rh_lfknuckle" pos="0 0 0.06579">
+                            <inertial mass="0.008" pos="0 0 0" quat="0.5 0.5 -0.5 0.5" diaginertia="3.2e-07 2.6e-07 2.6e-07"/>
+                            <joint name="rh_LFJ4" class="knuckle" axis="0 1 0"/>
+                            <geom pos="0 0 0.0005" class="plastic_visual" mesh="f_knuckle" material="metallic"/>
+                            <geom size="0.009 0.009" quat="1 0 1 0" type="cylinder" class="plastic_collision"/>
+                            <body name="rh_lfproximal">
+                                <inertial mass="0.03" pos="0 0 0.0225" quat="1 0 0 1" diaginertia="1e-05 9.8e-06 1.8e-06"/>
+                                <joint name="rh_LFJ3" class="proximal"/>
+                                <geom class="plastic_visual" mesh="f_proximal"/>
+                                <geom size="0.009 0.02" pos="0 0 0.025" type="capsule" class="plastic_collision"/>
+                                
+                                <site group="5" name="FP5_f1" pos="0 -0.008 0.005"/>
+                                <site group="5" name="FP5_f2" pos="0 -0.008 0.034"/>
+                                <site group="5" name="FS5_f1a" pos="0.008 -0.008 0.034"/>
+                                <site group="5" name="FS5_f1b" pos="-0.008 -0.008 0.034"/>
+                                <site group="5" name="ED5_f1" pos="0 0.008 0.015"/>
+                                <site group="5" name="ED5a_f2a" pos="0.006 0.009 0.035"/>
+                                <site group="5" name="ED5a_f2b" pos="-0.006 0.009 0.035"/>
+                                <site group="5" name="ED5b_f2" pos="0 0.009 0.03"/>
+                                <site group="5" name="F5M_f1" pos="-0.008 -0.007 0.008"/>
+                                <site group="5" name="AB5_f1" pos="-0.0095 0.003 0.01"/>
+                                <site group="5" name="PI5_f1" pos="0.0085 -0.007 0.008"/>
+                                
+
+
+                                <body name="rh_lfmiddle" pos="0 0 0.045">
+                                    <inertial mass="0.017" pos="0 0 0.0125" quat="1 0 0 1" diaginertia="2.7e-06 2.6e-06 8.7e-07"/>
+                                    <joint name="rh_LFJ2" class="middle_distal"/>
+                                    <geom class="plastic_visual" mesh="f_middle"/>
+                                    <geom size="0.009 0.0125" pos="0 0 0.0125" type="capsule" class="plastic_collision"/>
+                                
+                                    <site group="5" name="FP5_f3" pos="0 -0.008 0.005"/>
+                                    <site group="5" name="FP5_f4" pos="0 -0.008 0.029"/>
+                                    <site group="5" name="FS5_f2" pos="0 -0.008 0.01"/>
+                                    <site group="5" name="ED5a_f3a" pos="0.006 0.008 0.005"/>
+                                    <site group="5" name="ED5a_f3b" pos="-0.006 0.008 0.005"/>
+                                    <site group="5" name="ED5a_f4a" pos="0.004 0.008 0.023"/>
+                                    <site group="5" name="ED5a_f4b" pos="-0.004 0.008 0.023"/>
+                                    <site group="5" name="ED5b_f3" pos="0 0.008 0.005"/>
+                                    <site group="5" name="ED5b_f4" pos="0 0.008 0.02"/>
+
+                                
+                                    <body name="rh_lfdistal" pos="0 0 0.025">
+                                        <inertial mass="0.013" pos="0 0 0.0130769" quat="1 0 0 1" diaginertia="1.28092e-06 1.12092e-06 5.3e-07"/>
+                                        <joint name="rh_LFJ1" class="middle_distal"/>
+                                        <geom class="plastic_visual" mesh="f_distal_pst"/>
+                                        <geom class="plastic_collision" type="mesh" mesh="f_distal_pst"/>
+                                
+                                        <site group="5" name="FP5_f5" pos="0 -0.008 0.01"/>
+                                        <site group="5" name="ED5_f5" pos="0 0.008 0.01"/>
+                                
+                                    </body>
+                                </body>
+                            </body>
+                        </body>
+                    </body>
+                    <body name="rh_thbase" pos="0.034 -0.00858 0.029" quat="0.92388 0 0.382683 0">
+                        <inertial mass="0.01" pos="0 0 0" diaginertia="1.6e-07 1.6e-07 1.6e-07"/>
+                        <joint name="rh_THJ5" class="thbase"/>
+                        <geom class="plastic_collision" size="0.013"/>
+                        <body name="rh_thproximal">
+                            <inertial mass="0.04" pos="0 0 0.019" diaginertia="1.36e-05 1.36e-05 3.13e-06"/>
+                            <joint name="rh_THJ4" class="thproximal"/>
+                            <geom class="plastic_visual" mesh="th_proximal"/>
+                            <geom class="plastic_collision" size="0.0105 0.009" pos="0 0 0.02" type="capsule"/>
+
+                            <site group="1" name="FP1_f1" pos="-0.01 0 0.028"/>
+                            <site group="1" name="AB1_f1" pos="0.01 0 0.01"/>
+                            <site group="1" name="EPB_f1" pos="0.012 0 0.027"/>
+                            <site group="1" name="EPL_f1" pos="0.01 0.01 0.028"/>
+                            <site group="1" name="OP1_f1a" pos="-0.01 0 0.01"/>
+                            <site group="1" name="OP1_f1b" pos="-0.01 0 0.027"/>   
+                            <site group="2" name="DI2_tb" pos="0 0.009 0.018"/>  
+                            <site group="2" name="DI2_tf" pos="0 0.009 0.02"/>                      
+
+                            <body name="rh_thhub" pos="0 0 0.038">
+                                <inertial mass="0.005" pos="0 0 0" diaginertia="1e-06 1e-06 3e-07"/>
+                                <joint name="rh_THJ3" class="thhub"/>
+                                <geom size="0.011" class="plastic_collision"/>
+                                <body name="rh_thmiddle">
+                                    <inertial mass="0.02" pos="0 0 0.016" diaginertia="5.1e-06 5.1e-06 1.21e-06"/>
+                                    <joint name="rh_THJ2" class="thmiddle"/>
+                                    <geom class="plastic_visual" mesh="th_middle"/>
+                                    <geom size="0.009 0.009" pos="0 0 0.012" type="capsule" class="plastic_collision"/>
+                                    <geom size="0.01" pos="0 0 0.03" class="plastic_collision"/>
+
+                                    <site group="1" name="FP1_f2" pos="-0.01 0 0.005"/>
+                                    <site group="1" name="FP1_f3" pos="-0.01 0 0.03"/>
+                                    <site group="1" name="EPB_f2" pos="0.01 0 0.005"/>
+                                    <site group="1" name="EPL_f2" pos="0.01 0.005 0.008"/>
+                                    <site group="1" name="EPL_f3" pos="0.01 0.005 0.03"/>
+                                    <site group="1" name="F1B_f1" pos="-0.009 -0.005 0.005"/>
+                                    <site group="1" name="AD1_f1" pos="-0.009 -0.004 0.005"/>
+                                    <site group="1" name="AD1_f2" pos="-0.009 -0.005 0.005"/>
+                                    <site group="1" name="AB1B_f1" pos="-0.005 -0.009 0.005"/>
+
+                                    <body name="rh_thdistal" pos="0 0 0.032" quat="1 0 0 -1">
+                                        <inertial mass="0.017" pos="0 0 0.0145588" quat="1 0 0 1" diaginertia="2.37794e-06 2.27794e-06 1e-06"/>
+                                        <joint name="rh_THJ1" class="thdistal"/>
+                                        <geom class="plastic_visual" mesh="th_distal_pst"/>
+                                        <geom class="plastic_collision" type="mesh" mesh="th_distal_pst"/>
+                                        
+                                        <site group="1" name="FP1_f4" pos="0 -0.01 0.013"/>
+                                        <site group="1" name="EPL_f4" pos="0 0.01 0.005"/>
+
+                                    </body>
+                                </body>
+                            </body>
+                        </body>
+                    </body>
+                </body>
+            </body>
+        </body>
+    </worldbody>
+
+    <contact>
+        <exclude body1="rh_wrist" body2="rh_forearm"/>
+        <exclude body1="rh_thproximal" body2="rh_thmiddle"/>
+    </contact>
+
+    <tendon>
+        <fixed name="rh_FFJ0">
+            <joint joint="rh_FFJ2" coef="1"/>
+            <joint joint="rh_FFJ1" coef="1"/>
+        </fixed>
+        <fixed name="rh_MFJ0">
+            <joint joint="rh_MFJ2" coef="1"/>
+            <joint joint="rh_MFJ1" coef="1"/>
+        </fixed>
+        <fixed name="rh_RFJ0">
+            <joint joint="rh_RFJ2" coef="1"/>
+            <joint joint="rh_RFJ1" coef="1"/>
+        </fixed>
+        <fixed name="rh_LFJ0">
+            <joint joint="rh_LFJ2" coef="1"/>
+            <joint joint="rh_LFJ1" coef="1"/>
+        </fixed>
+    </tendon>
+
+% tendons
+
+    %extrinsic
+    <tendon>
+        <spatial class="wrist_ex" group="0" name="FL_w_ul">
+            <site site="arm_FWU_back"/>
+            <site site="arm_FWU_front"/>
+            <site site="palm_FWU"/>
+        </spatial>
+        <spatial class="wrist_ex" group="0" name="FL_w_rad">
+            <site site="arm_FWR_back"/>
+            <site site="arm_FWR_front"/>
+            <site site="palm_FWR"/>
+        </spatial>
+        <spatial class="wrist_ex" group="0" name="EX_w_rad_short">
+            <site site="arm_EWRS_back"/>
+            <site site="arm_EWRS_front"/>
+            <site site="palm_EWRS"/>
+        </spatial>
+        <spatial class="wrist_ex" group="0" name="EX_w_rad_long">
+            <site site="arm_EWRL_back"/>
+            <site site="arm_EWRL_front"/>
+            <site site="palm_EWRL"/>
+        </spatial>
+        <spatial class="wrist_ex" group="0" name="EX_w_ul">
+            <site site="arm_EWU_back"/>
+            <site site="arm_EWU_front"/>
+            <site site="palm_EWU"/>
+        </spatial>
+        <spatial class="wrist_ex" group="0" name="PA_long">
+            <site site="palm_ab"/>
+            <site site="palm_af"/>
+            <pulley divisor="4"/>
+            <site site="palm_af"/>
+            <site site="palm_2"/>
+            <pulley divisor="4"/>
+            <site site="palm_af"/>
+            <site site="palm_3"/>
+            <pulley divisor="4"/>
+            <site site="palm_af"/>
+            <site site="palm_4"/>
+            <pulley divisor="4"/>
+            <site site="palm_af"/>
+            <site site="palm_5"/>
+        </spatial>        
+        <spatial class="thumb_ex" group="1" name="FL_poll_long">
+            <site site="FP1_ab"/>
+            <site site="FP1_af"/>
+            <site site="FP1_pb"/>
+            <site site="FP1_f1"/>
+            <site site="FP1_f2"/>
+            <site site="FP1_f3"/>
+            <site site="FP1_f4"/>
+        </spatial>        
+        <spatial class="thumb_ex" group="1" name="AB1_ex">
+            <site site="AB1_ab"/>
+            <site site="AB1_af"/>
+            <site site="AB1_pb"/>
+            <site site="AB1_f1"/>
+        </spatial>
+        <spatial class="thumb_ex" group="1" name="EX1_long">
+            <site site="EPL_ab"/>
+            <site site="EPL_af"/>
+            <site site="EPL_pb"/>
+            <site site="EPL_f1"/>
+            <site site="EPL_f2"/>
+            <site site="EPL_f3"/>
+            <site site="EPL_f4"/>
+        </spatial>
+        <spatial class="thumb_ex" group="1" name="EX1_short">
+            <site site="EPB_ab"/>
+            <site site="EPB_af"/>
+            <site site="EPB_pb"/>
+            <site site="EPB_f1"/>
+            <site site="EPB_f2"/>
+        </spatial>
+        <spatial class="finger_ex" group="2" name="FL_prof2">
+            <site site="FP2_ab"/>
+            <site site="FP2_af"/>
+            <site site="FP2_pb"/>
+            <site site="FP2_pf"/>
+            <site site="FP2_f1"/>
+            <site site="FP2_f2"/>
+            <site site="FP2_f3"/>
+            <site site="FP2_f4"/>
+            <site site="FP2_f5"/>
+        </spatial>        
+        <spatial class="finger_ex" group="2" name="FL_sup2">
+            <site site="FP2_ab"/>
+            <site site="FP2_af"/>
+            <site site="FP2_pb"/>
+            <site site="FP2_pf"/>
+            <site site="FP2_f1"/>
+            <pulley divisor="2"/>
+            <site site="FP2_f1"/>
+            <site site="FS2_f1a"/>
+            <site site="FS2_f2"/>
+            <pulley divisor="2"/>
+            <site site="FP2_f1"/>
+            <site site="FS2_f1b"/>
+            <site site="FS2_f2"/>
+        </spatial>        
+        <spatial class="finger_ex" group="2" name="EX2_a">
+            <site site="ED2_ab"/>
+            <site site="ED2_af"/>
+            <site site="ED2_pb"/>
+            <site site="ED2_pf"/>
+            <site site="ED2_f1"/>
+            <pulley divisor="2"/>
+            <site site="ED2_f1"/>
+            <site site="ED2a_f2a"/>
+            <site site="ED2a_f3a"/>
+            <site site="ED2a_f4a"/>
+            <site site="ED2_f5"/>
+            <pulley divisor="2"/>
+            <site site="ED2_f1"/>
+            <site site="ED2a_f2b"/>
+            <site site="ED2a_f3b"/>
+            <site site="ED2a_f4b"/>
+            <site site="ED2_f5"/>
+        </spatial>
+        <spatial class="finger_ex" group="2" name="EX2_b">
+            <site site="ED2_ab"/>
+            <site site="ED2_af"/>
+            <site site="ED2_pb"/>
+            <site site="ED2_pf"/>
+            <site site="ED2_f1"/>
+            <site site="ED2b_f2"/>
+            <site site="ED2b_f3"/>
+            <site site="ED2b_f4"/>
+            <site site="ED2_f5"/>
+        </spatial>
+        <spatial class="finger_ex" group="3" name="FL_prof3">
+            <site site="FP3_ab"/>
+            <site site="FP3_af"/>
+            <site site="FP3_pb"/>
+            <site site="FP3_pf"/>
+            <site site="FP3_f1"/>
+            <site site="FP3_f2"/>
+            <site site="FP3_f3"/>
+            <site site="FP3_f4"/>
+            <site site="FP3_f5"/>
+        </spatial>         
+        <spatial class="finger_ex" group="3" name="FL_sup3">
+            <site site="FP3_ab"/>
+            <site site="FP3_af"/>
+            <site site="FP3_pb"/>
+            <site site="FP3_pf"/>
+            <site site="FP3_f1"/>
+            <pulley divisor="2"/>
+            <site site="FP3_f1"/>
+            <site site="FS3_f1a"/>
+            <site site="FS3_f2"/>
+            <pulley divisor="2"/>
+            <site site="FP3_f1"/>
+            <site site="FS3_f1b"/>
+            <site site="FS3_f2"/>
+        </spatial>
+        <spatial class="finger_ex" group="3" name="EX3">
+            <site site="ED3_ab"/>
+            <site site="ED3_af"/>
+            <site site="ED3_pb"/>
+            <site site="ED3_pf"/>
+            <site site="ED3_f1"/>
+            <pulley divisor="2"/>
+            <site site="ED3_f1"/>
+            <site site="ED3_f2a"/>
+            <site site="ED3_f3a"/>
+            <site site="ED3_f4a"/>
+            <site site="ED3_f5"/>
+            <pulley divisor="2"/>
+            <site site="ED3_f1"/>
+            <site site="ED3_f2b"/>
+            <site site="ED3_f3b"/>
+            <site site="ED3_f4b"/>
+            <site site="ED3_f5"/>
+        </spatial>
+        <spatial class="finger_ex" group="4" name="FL_prof4">
+            <site site="FP4_ab"/>
+            <site site="FP4_af"/>
+            <site site="FP4_pb"/>
+            <site site="FP4_pf"/>
+            <site site="FP4_f1"/>
+            <site site="FP4_f2"/>
+            <site site="FP4_f3"/>
+            <site site="FP4_f4"/>
+            <site site="FP4_f5"/>  
+        </spatial>
+        <spatial class="finger_ex" group="4" name="FL_sup4">
+            <site site="FP4_ab"/>
+            <site site="FP4_af"/>
+            <site site="FP4_pb"/>
+            <site site="FP4_pf"/>
+            <site site="FP4_f1"/>
+            <pulley divisor="2"/>
+            <site site="FP4_f1"/>
+            <site site="FS4_f1a"/>
+            <site site="FS4_f2"/>
+            <pulley divisor="2"/>
+            <site site="FP4_f1"/>
+            <site site="FS4_f1b"/>
+            <site site="FS4_f2"/>
+        </spatial>        
+        <spatial class="finger_ex" group="4" name="EX4">
+            <site site="ED4_ab"/>
+            <site site="ED4_af"/>
+            <site site="ED4_pb"/>
+            <site site="ED4_pf"/>
+            <site site="ED4_f1"/>
+            <pulley divisor="2"/>
+            <site site="ED4_f1"/>
+            <site site="ED4_f2a"/>
+            <site site="ED4_f3a"/>
+            <site site="ED4_f4a"/>
+            <site site="ED4_f5"/>
+            <pulley divisor="2"/>
+            <site site="ED4_f1"/>
+            <site site="ED4_f2b"/>
+            <site site="ED4_f3b"/>
+            <site site="ED4_f4b"/>
+            <site site="ED4_f5"/>
+        </spatial>
+        <spatial class="finger_ex" group="5" name="FL_prof5">
+            <site site="FP5_ab"/>
+            <site site="FP5_af"/>
+            <site site="FP5_pb"/>
+            <site site="FP5_mc"/>
+            <site site="FP5_f1"/>
+            <site site="FP5_f2"/>
+            <site site="FP5_f3"/>
+            <site site="FP5_f4"/>
+            <site site="FP5_f5"/>  
+        </spatial>
+        <spatial class="finger_ex" group="5" name="FL_sup5">
+            <site site="FP5_ab"/>
+            <site site="FP5_af"/>
+            <site site="FP5_pb"/>
+            <site site="FP5_mc"/>
+            <site site="FP5_f1"/>
+            <pulley divisor="2"/>
+            <site site="FP5_f1"/>
+            <site site="FS5_f1a"/>
+            <site site="FS5_f2"/>
+            <pulley divisor="2"/>
+            <site site="FP5_f1"/>
+            <site site="FS5_f1b"/>
+            <site site="FS5_f2"/>
+        </spatial>        
+        <spatial class="finger_ex" group="5" name="EX5_a">
+            <site site="ED5a_ab"/>
+            <site site="ED5a_af"/>
+            <site site="ED5a_pb"/>
+            <site site="ED5a_mc"/>
+            <site site="ED5_f1"/>            
+            <pulley divisor="2"/>
+            <site site="ED5_f1"/>
+            <site site="ED5a_f2a"/>
+            <site site="ED5a_f3a"/>
+            <site site="ED5a_f4a"/>
+            <site site="ED5_f5"/>
+            <pulley divisor="2"/>
+            <site site="ED5_f1"/>
+            <site site="ED5a_f2b"/>
+            <site site="ED5a_f3b"/>
+            <site site="ED5a_f4b"/>
+            <site site="ED5_f5"/>
+        </spatial>
+        <spatial class="finger_ex" group="5" name="EX5_b">
+            <site site="ED5b_ab"/>
+            <site site="ED5b_af"/>
+            <site site="ED5b_pb"/>
+            <site site="ED5b_mc"/>            
+            <site site="ED5_f1"/>
+            <site site="ED5b_f2"/>
+            <site site="ED5b_f3"/>
+            <site site="ED5b_f4"/>
+            <site site="ED5_f5"/>
+        </spatial>
+    </tendon>
+
+    %intrinsic
+    <tendon>
+        <spatial class="thumb_int" group="1" name="FL1_short">
+            <site site="F1B_pm"/>
+            <site site="F1B_f1"/>
+        </spatial>
+        <spatial class="thumb_int" group="1" name="OP1">
+            <site site="OP1_pm"/>
+            <site site="OP1_pr"/>
+            <pulley divisor="2"/>
+            <site site="OP1_pr"/>
+            <site site="OP1_f1a"/>
+            <pulley divisor="2"/>
+            <site site="OP1_pr"/>
+            <site site="OP1_f1b"/>
+        </spatial>
+        <spatial class="thumb_int" group="1" name="AD1">
+            <site site="AD1_f1"/>
+            <site site="AD1_f2"/>
+            <pulley divisor="4"/>
+            <site site="AD1_f2"/>
+            <site site="AD1_pf"/>
+            <pulley divisor="4"/>
+            <site site="AD1_f2"/>
+            <site site="AD1_pb"/>
+            <pulley divisor="4"/>
+            <site site="AD1_f2"/>
+            <site site="AD1_pma"/>
+            <pulley divisor="4"/>
+            <site site="AD1_f2"/>
+            <site site="AD1_pmb"/>
+        </spatial>
+        <spatial class="thumb_int" group="1" name="AB1_short">
+            <site site="AB1B_pm"/>
+            <site site="AB1B_pr"/>
+            <site site="AB1B_f1"/>
+        </spatial>                     
+        <spatial class="lf_int"  group="5" name="FL5_short">
+            <site site="F5M_pm"/>
+            <site site="F5M_pr"/>
+            <site site="F5M_f1"/>
+        </spatial>    
+        <spatial class="lf_int"  group="5" name="OP5">
+            <site site="OP5_pm"/>
+            <site site="OP5_mc"/>
+        </spatial>   
+        <spatial class="lf_int" group="5" name="AB5">
+            <site site="AB5_pr"/>
+            <site site="AB5_mc"/>
+            <site site="AB5_f1"/>
+        </spatial> 
+        <spatial class="finger_int" group="2" name="P_INT2">
+            <site site="PI2_pb"/>
+            <site site="PI2_f1"/>
+        </spatial>
+        <spatial class="finger_int" group="4" name="P_INT4">
+            <site site="PI4_pb"/>
+            <site site="PI4_f1"/>
+        </spatial>
+        <spatial class="finger_int" group="5" name="P_INT5">
+            <site site="PI5_mc"/>
+            <site site="PI5_f1"/>
+        </spatial> 
+        <spatial class="finger_int" group="2" name="D_INT2">
+            <site site="DI2_f2"/>
+            <site site="DI2_f1"/>
+            <pulley divisor="2"/>
+            <site site="DI2_f1"/>
+            <site site="DI2_pf"/>
+            <site site="DI2_pb"/>
+            <pulley divisor="2"/>
+            <site site="DI2_f1"/>
+            <site site="DI2_tf"/>
+            <site site="DI2_tb"/>
+        </spatial> 
+        <spatial class="finger_int" group="3" name="D_INT3">
+            <site site="DI3_pb"/>
+            <site site="DI3_f1"/>
+        </spatial>    
+        <spatial class="finger_int" group="3" name="D_INT4">
+            <site site="DI4_pb"/>
+            <site site="DI4_f1"/>
+        </spatial>   
+        <spatial class="finger_int" group="4" name="D_INT5">
+            <site site="DI5_f2"/>
+            <site site="DI5_f1"/>
+            <pulley divisor="2"/>
+            <site site="DI5_f1"/>
+            <site site="DI5_mcf"/>
+            <site site="DI5_mcb"/>
+            <pulley divisor="2"/>
+            <site site="DI5_f1"/>
+            <site site="DI5_pf"/>
+            <site site="DI5_pb"/>
+        </spatial>  
+        <spatial class="finger_lum" group="2" name="LUMB2">
+            <site site="FP2_pb"/>
+            <site site="ED2a_f2a"/>
+        </spatial>    
+        <spatial class="finger_lum" group="3" name="LUMB3">
+            <site site="FP3_pb"/>
+            <site site="ED3_f2a"/>
+        </spatial>    
+        <spatial class="finger_lum" group="4" name="LUMB4">
+            <site site="FP4_pb"/>
+            <site site="ED4_f2a"/>
+        </spatial>    
+        <spatial class="finger_lum" group="5" name="LUMB5">
+            <site site="FP5_pb"/>
+            <site site="ED5a_f2a"/>
+        </spatial>      
+    </tendon>
+
+% muscles
+
+    %extrinsic
+    <actuator>
+        <muscle group="0" name="fl_wr_ul" tendon="FL_w_ul"/>
+        <muscle group="0" name="fl_wr_rad" tendon="FL_w_rad"/>          
+        <muscle group="0" name="ex_wr_rad_short" tendon="EX_w_rad_short"/>
+        <muscle group="0" name="ex_wr_rad_long" tendon="EX_w_rad_long"/>
+        <muscle group="0"  name="ex_wr_ul" tendon="EX_w_ul"/>
+        <muscle group="0" name="palm_long" tendon="PA_long"/>
+        <muscle group="1" name="fl_poll_long" tendon="FL_poll_long"/>
+        <muscle group="1" name="ab_1_ex" tendon="AB1_ex"/>
+        <muscle group="1" name="ex_1_long" tendon="EX1_long"/>
+        <muscle group="1" name="ex_1_short" tendon="EX1_short"/> 
+        <muscle group="2" name="fl_prof_2" tendon="FL_prof2"/>
+        <muscle group="2" name="fl_sup_2" tendon="FL_sup2"/>
+        <muscle group="2" name="ex_2_A" tendon="EX2_a"/>  
+        <muscle group="2" name="ex_2_B" tendon="EX2_b"/>
+        <muscle group="3" name="fl_prof_3" tendon="FL_prof3"/>
+        <muscle group="3" name="fl_sup_3" tendon="FL_sup3"/>
+        <muscle group="3" name="ex_3" tendon="EX3"/>  
+        <muscle group="4" name="fl_prof_4" tendon="FL_prof4"/>
+        <muscle group="4" name="fl_sup_4" tendon="FL_sup4"/>
+        <muscle group="4" name="ex_4" tendon="EX4"/>   
+        <muscle group="5" name="fl_prof_5" tendon="FL_prof5"/>
+        <muscle group="5" name="fl_sup_5" tendon="FL_sup5"/>
+        <muscle group="5" name="ex_5_A" tendon="EX5_a"/>  
+        <muscle group="5" name="ex_5_B" tendon="EX5_b"/>  
+    </actuator>
+
+    % intrinsic
+    <actuator>
+        <muscle group="1" name="fl_1_short" tendon="FL1_short"/>
+        <muscle group="1" name="op_1" tendon="OP1"/>  
+        <muscle group="1" name="ad_1" tendon="AD1"/>
+        <muscle group="1" name="ab_1_short" tendon="AB1_short"/> 
+        <muscle group="2" name="p_intos_2" tendon="P_INT2"/>  
+        <muscle group="2" name="d_intos_2" tendon="D_INT2" />
+        <muscle group="2" name="lumb_2" tendon="LUMB2"/>
+        <muscle group="3" name="d_intos_3" tendon="D_INT3"/>
+        <muscle group="3" name="d_intos_4" tendon="D_INT4"/>
+        <muscle group="3" name="lumb_3" tendon="LUMB3"/>
+        <muscle group="4" name="p_intos_4" tendon="P_INT4" />
+        <muscle group="4" name="d_intos_5" tendon="D_INT5"/>
+        <muscle group="4" name="lumb_4" tendon="LUMB4"/>
+        <muscle group="5" name="fl_5_short" tendon="FL5_short"/> 
+        <muscle group="5" name="op_5" tendon="OP5"/> 
+        <muscle group="5" name="ab5" tendon="AB5"/>
+        <muscle group="5" name="p_intos_5" tendon="P_INT5"/>
+        <muscle group="5" name="lumb_5" tendon="LUMB5"/>
+    </actuator>
+
+</mujoco>
